@@ -1,0 +1,29 @@
+# קבצים שנוצרים בבנייה או הגדרות מקומיות - לא מעלים ל-GitHub
+
+# Android (APP)
+.gradle/
+.kotlin/
+.idea/
+build/
+local.properties
+*.iml
+captures/
+.cxx/
+.externalNativeBuild/
+
+# Quartus (FPGA)
+db/
+incremental_db/
+output_files/
+simulation/
+*.qws
+*.bak
+
+# סימולציה
+obj_dir/
+*.vcd
+
+# מערכת הפעלה
+.DS_Store
+Thumbs.db
+desktop.ini

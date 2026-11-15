@@ -1,0 +1,104 @@
+# -------------------------------------------------------------------------- #
+#
+# Copyright (C) 1991-2013 Altera Corporation
+# Your use of Altera Corporation's design tools, logic functions
+# and other software and tools, and its AMPP partner logic
+# functions, and any output files from any of the foregoing
+# (including device programming or simulation files), and any
+# associated documentation or information are expressly subject
+# to the terms and conditions of the Altera Program License
+# Subscription Agreement, Altera MegaCore Function License
+# Agreement, or other applicable license agreement, including,
+# without limitation, that your use is for the sole purpose of
+# programming logic devices manufactured by Altera and sold by
+# Altera or its authorized distributors.  Please refer to the
+# applicable agreement for further details.
+#
+# -------------------------------------------------------------------------- #
+#
+# Quartus II 64-Bit
+# Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edition
+# Date created = 15:20:26  August 28, 2026
+#
+# -------------------------------------------------------------------------- #
+#
+# Notes:
+#
+# 1) The default values for assignments are stored in the file:
+#		Drone_Top_assignment_defaults.qdf
+#    If this file doesn't exist, see file:
+#		assignment_defaults.qdf
+#
+# 2) Altera recommends that you do not modify this file. This
+#    file is updated automatically by the Quartus II software
+#    and any changes you make may be lost or overwritten.
+#
+# -------------------------------------------------------------------------- #
+
+# ═══ System & Device ═══
+set_global_assignment -name FAMILY "Cyclone II"
+set_global_assignment -name DEVICE EP2C5T144C8
+set_global_assignment -name TOP_LEVEL_ENTITY drone_top
+set_global_assignment -name ORIGINAL_QUARTUS_VERSION "13.0 SP1"
+set_global_assignment -name PROJECT_CREATION_TIME_DATE "15:20:26  AUGUST 28, 2026"
+set_global_assignment -name LAST_QUARTUS_VERSION "13.0 SP1"
+set_global_assignment -name PROJECT_OUTPUT_DIRECTORY output_files
+set_global_assignment -name MIN_CORE_JUNCTION_TEMP 0
+set_global_assignment -name MAX_CORE_JUNCTION_TEMP 85
+set_global_assignment -name ERROR_CHECK_FREQUENCY_DIVISOR 1
+
+# ═══ Source files ═══
+set_global_assignment -name VERILOG_FILE uart_rx.v
+set_global_assignment -name VERILOG_FILE uart_tx.v
+set_global_assignment -name VERILOG_FILE cmd_parser.v
+set_global_assignment -name VERILOG_FILE msp_builder.v
+set_global_assignment -name VERILOG_FILE flight_fsm.v
+# Mission FSM - dormant: built only when MISSION_ENABLE=1 in drone_top.v (default 0)
+set_global_assignment -name VERILOG_FILE mission_rx.v
+set_global_assignment -name VERILOG_FILE mission_fsm.v
+set_global_assignment -name VERILOG_FILE mission_tx.v
+set_global_assignment -name VERILOG_FILE drone_top.v
+
+# ═══ Timing ═══
+# Single constraints file: SDC1.sdc (50MHz clock on PIN_17, period 20ns).
+# The old reference to drone_top.sdc was removed - that file never existed.
+set_global_assignment -name CYCLONEII_OPTIMIZATION_TECHNIQUE AREA
+set_global_assignment -name AUTO_RESOURCE_SHARING ON
+set_global_assignment -name SDC_FILE SDC1.sdc
+
+# ═══ Safety ═══
+set_global_assignment -name RESERVE_ALL_UNUSED_PINS "AS INPUT TRI-STATED"
+
+# ═══ Pin locations ═══
+set_location_assignment PIN_17 -to clk
+set_location_assignment PIN_43 -to esp_rx
+set_location_assignment PIN_42 -to esp_tx
+set_location_assignment PIN_41 -to fc_tx
+set_location_assignment PIN_40 -to fc_rx
+set_location_assignment PIN_3 -to led[0]
+set_location_assignment PIN_7 -to led[1]
+set_location_assignment PIN_9 -to led[2]
+
+# ═══ I/O standard ═══
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to clk
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to esp_rx
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to esp_tx
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to fc_tx
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to fc_rx
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to led[0]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to led[1]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to led[2]
+
+# ═══ Floating-input protection on RX lines ═══
+set_instance_assignment -name WEAK_PULL_UP_RESISTOR ON -to esp_rx
+set_instance_assignment -name WEAK_PULL_UP_RESISTOR ON -to fc_rx
+
+# ═══ Partitions ═══
+set_global_assignment -name PARTITION_NETLIST_TYPE SOURCE -section_id Top
+set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT_AND_ROUTING -section_id Top
+set_global_assignment -name PARTITION_COLOR 16764057 -section_id Top
+set_global_assignment -name RESERVE_ALL_UNUSED_PINS_NO_OUTPUT_GND "AS OUTPUT DRIVING AN UNSPECIFIED SIGNAL"
+set_global_assignment -name STRATIX_DEVICE_IO_STANDARD "3.3-V LVTTL"
+set_global_assignment -name USE_CONFIGURATION_DEVICE ON
+
+set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top
