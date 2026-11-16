@@ -8,6 +8,7 @@ it is the only component that sends RC commands, it decides which commands are s
 
 - 🎬 **Project video:** [Photos_and_Videos/Project_Video.mp4](Photos_and_Videos/Project_Video.mp4)
 - 📘 **Project book (Hebrew):** [Docs/Final_Project_Book.pdf](Docs/Final_Project_Book.pdf)
+- 📊 **Project presentation (Hebrew):** [Docs/Project_Presentation.pdf](Docs/Project_Presentation.pdf)
 
 ---
 
@@ -76,7 +77,7 @@ FPGA/                FPGA design (Verilog, Quartus II)
   msp_builder.v      MSP RC packet builder
   uart_rx.v, uart_tx.v
   sim/               testbenches (Verilator)
-Docs/                project book, BOM, wiring table
+Docs/                project book, presentation, BOM, wiring table
 Photos_and_Videos/   build photos and project video
 ```
 
